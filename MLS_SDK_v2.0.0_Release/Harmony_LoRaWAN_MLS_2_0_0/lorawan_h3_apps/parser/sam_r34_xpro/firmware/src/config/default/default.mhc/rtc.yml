@@ -1,0 +1,51 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: rtc}
+children:
+- type: Symbols
+  children:
+  - type: Hex
+    attributes: {id: RTC_MODE0_INTENSET}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: rtc, value: '256'}
+  - type: Boolean
+    attributes: {id: RTC_MODE0_INTENSET_CMP0_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: KeyValueSet
+    attributes: {id: RTC_MODE0_PRESCALER}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '0'}
+  - type: Hex
+    attributes: {id: RTC_MODE0_TIMER_COMPARE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '4294967295'}
+- type: Attachments
+  children:
+  - type: DirectCapability
+    attributes: {id: RTC_TMR}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: MLS_SRC}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: mlssrc_sleeptimer_rtc_dependency}
+- type: ElementPosition
+  attributes: {x: '18', y: '319', id: rtc}

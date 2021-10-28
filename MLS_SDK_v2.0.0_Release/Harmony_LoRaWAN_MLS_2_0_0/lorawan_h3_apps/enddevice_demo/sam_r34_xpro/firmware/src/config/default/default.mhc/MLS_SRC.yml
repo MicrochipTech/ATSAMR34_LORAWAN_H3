@@ -1,0 +1,47 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: MLS_SRC}
+children:
+- type: Attachments
+  children:
+  - type: DirectDependency
+    attributes: {id: mlssrc_radio_sercom4spi_dependency}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: sercom4}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: SERCOM4_SPI}
+  - type: DirectDependency
+    attributes: {id: mlssrc_sleeptimer_rtc_dependency}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: rtc}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: RTC_TMR}
+  - type: DirectDependency
+    attributes: {id: mlssrc_swtimer_tmr_dependency}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: tc0}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: TC0_TMR}
+- type: ElementPosition
+  attributes: {x: '162', y: '183', id: MLS_SRC}

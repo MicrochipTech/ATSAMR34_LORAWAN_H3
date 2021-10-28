@@ -1,0 +1,14 @@
+configName: default
+folderName: enddevice_demo_sam_r34_xpro
+format_version: v1.0
+frameworkPath: ..\..
+processor: ATSAMR34J18B
+projectName: enddevice_demo_sam_r34_xpro
+settings:
+  PackageFilter: bsp;core;crypto;cryptoauthlib;csp;dev_packs;lorawan_h3_sources;quick_docs
+  FORCE_OPTIMIZATION: 'false'
+  GENERATE_BACKUP: 'true'
+  TRUSTZONE: 'false'
+  CMSISPath: .\dev_packs\arm\CMSIS\5.8.0
+  MERGE_STRATEGY: OVERWRITE
+  DFPPath: .\dev_packs\Microchip\SAMR34_DFP\2.1.60\atdf\ATSAMR34J18B.atdf

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Module name="MLS_SRC" id="fb0de473-03b1-48a5-9eaa-5c8596ff90bc" version="2.0.0">
+    <ConfigRoot path="config/module.py"/>
+</Module>

@@ -1,0 +1,38 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: nvmctrl}
+children:
+- type: Symbols
+  children:
+  - type: KeyValueSet
+    attributes: {id: NVMCTRL_CTRLB_POWER_REDUCTION_MODE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '0'}
+  - type: KeyValueSet
+    attributes: {id: NVMCTRL_CTRLB_READMODE_SELECTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '0'}
+  - type: Combo
+    attributes: {id: NVMCTRL_WRITE_POLICY}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: AUTOMATIC}
+  - type: Integer
+    attributes: {id: NVM_RWS}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: nvmctrl, value: '2'}
+      - type: User
+        attributes: {value: '2'}
+- type: ElementPosition
+  attributes: {x: '285', y: '88', id: nvmctrl}

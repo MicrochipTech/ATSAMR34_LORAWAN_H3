@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Package name="lorawan_h3_sources">
+    <Dependencies>
+        <Dependency name="csp" version="v3.9.1"/>
+        <Dependency name="core" version="v3.9.2"/>
+        <Dependency name="crypto" version="v3.7.1"/>
+        <Dependency name="cryptoauthlib" version="v3.3.2"/>
+    </Dependencies>
+</Package>

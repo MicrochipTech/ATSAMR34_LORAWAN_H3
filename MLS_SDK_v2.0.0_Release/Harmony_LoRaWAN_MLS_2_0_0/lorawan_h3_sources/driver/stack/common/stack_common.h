@@ -47,7 +47,7 @@ extern "C" {
 #define MAJOR_NUM                 "2"
 #define MINOR_NUM                 "0"
 #define PATCH_NUM                 "0"
-#define BUILD_TYPE                BUILD_TYPE_RELCANDIDATE
+#define BUILD_TYPE                BUILD_TYPE_PRODUCTION
 
 #define RC_NUM                    "6"
 

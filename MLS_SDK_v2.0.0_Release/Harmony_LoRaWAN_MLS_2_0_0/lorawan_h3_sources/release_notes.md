@@ -1,17 +1,33 @@
 ﻿![Microchip logo](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_logo.png)
 ![Harmony logo small](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_mplab_harmony_logo_small.png)
 
-# MLS (Confidential) Release Notes
+# Microchip LoRaWAN Stack Release Notes
 
+| MLS_SDK Version | LoRaWAN Version | RegParams Version | Classes Supported | Join Modes | MLS_SDK Release Date |
+|-----------------|-----------------|-------------------|-------------------|------------|----------------------|
+| v2.0.0          | LW1.0.4         | RP2-1.0.1         | Class-A & Class-C | OTAA & ABP | 2021-10-21           |
+
+## Supported Platforms
+
+- SAMR34 Xplained PRO
+
+## v2.0.0
+
+- v2.0.0-rc.6 is released as v2.0.0
+
+## v2.0.0-rc.6
+
+#### Bug Fixes
+
+- LORA_DEV-2109: Fix TTIv3 NS join issue with ECC
+- LORA_DEV-2107: H3 code cleanup, formatting and licence update
+- LORA_DEV-1877: DR 0 in Class C downlink reception is not happening in Regression based tests
 
 ## v2.0.0-rc.5
 
 #### New Features
 
 - LORA_DEV-2054: Add secure element support
-- LORA_DEV-2011: Add LORAWAN_VERSION attribute LORAWAN_GetAttr() function
-- LORA_DEV-2012: Add REGPARAMS_VERSION attribute in LORAREG_GetAttr()
-
 
 #### Improvements
 

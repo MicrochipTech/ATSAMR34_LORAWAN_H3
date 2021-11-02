@@ -10,7 +10,7 @@ Devices: | **ATSAMR34 | WLR089U0**
 <img src="resources/media/Microchip_logo.png" width=320></a>
 <a href="https://www.microchip.com/lora" target="_blank">
 <img src="resources/media/applications.png" width=240></a>
-<img src="resources/media/microchip_mplabx.png" width=240>
+<img src="resources/media/microchip_mplabx.png" width=180>
 </p>
 
 ## ⚠ Disclaimer

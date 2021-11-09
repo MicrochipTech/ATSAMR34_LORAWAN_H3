@@ -45,7 +45,8 @@ Note that while this repository is unsupported, Microchip welcome community cont
 1. [Software Environment Setup](#step5)
 1. [Sample Applications](#step6)
    1. [LoRaWAN Mote Application](#step6a)
-   3. [RN Command Parser](#step6b)
+   1. [RN Command Parser](#step6b)
+   1. [RN Command Parser + ATECC608B_TNG](#step6c)
 <!-- 1. [Create a project from scratch](#step7)-->
 
 ## Introduction<a name="step1"></a>
@@ -72,7 +73,7 @@ MLS v2.0.0 release is pre-tested against LoRaWAN 1.0.4 Class A using official Lo
 
 * Purchase a LoRa Gateway
 
-* If using a Join Server with security solution for LoRaWAN, a pre-provisioned ECC608 secure element is required. Purchase the [ATECC608B-TNGLORA](https://www.microchip.com/en-us/product/ATECC608B-TNGLORA) and the [CryptoAuthentication Socket Kit](https://www.microchip.com/en-us/product/ATECC608B-TNGLORA)
+* If using a Join Server with security solution for LoRaWAN, a pre-provisioned ATECC608 secure element is required. Purchase the Trust&GO secure element [ATECC608B-TNGLORA](https://www.microchip.com/en-us/product/ATECC608B-TNGLORA) for TTI Join Server or the [ATECC608B-TNGACT](https://www.microchip.com/en-us/product/ATECC608B-TNGACT) for Actility Join Server and the [CryptoAuthentication Socket Kit](https://www.microchip.com/en-us/product/ATECC608B-TNGLORA)
 
 
 ## LoRaWAN Certification Test Tool<a name="step3"></a>
@@ -103,7 +104,7 @@ And using the following setup:
 ## Package Overview<a name="step4"></a>
 
 The Microchip LoRaWAN Stack contains:
-* **LoRaWAN Enddevice Demo (with certification mode & ATECC608 support)**: A 32-bit MPLAB Harmony 3 Project, which provides a reference application
+* **LoRaWAN Enddevice Demo (with certification mode & pre-provisioned ATECC608 support)**: A 32-bit MPLAB Harmony 3 Project, which provides a reference application
 * **RN-style Parser**: A 32-bit MPLAB Harmony 3 project
 * The LoRaWAN stack components in source code
 * Drivers, software timer, PDS, PMM and radio drivers for the LoRaWAN stack
@@ -118,7 +119,12 @@ lorawan_h3_apps/
 │       └───firmware/
 │           ├───enddevice_demo_sam_r34_xpro.X/
 │           └───src/
-└───parser
+├───parser
+│   └───sam_r34_xpro/
+│       └───firmware/
+│           ├───parser_sam_r34_xpro.X/
+│           └───src/
+└───parser_ecc608
     └───sam_r34_xpro/
         └───firmware/
             ├───parser_sam_r34_xpro.X/
@@ -175,7 +181,7 @@ The following table provides the directory structure of the LoRaWAN stack code b
 
 > -Os settings MUST be enabled manually by adding FULL XC32 compiler licence from registering at [http://licenses.microchip.com/ ](http://licenses.microchip.com/ )
 
-3. Install the [MPLAB® Harmony Configurator 3 Plugin](https://www.microchip.com/en-us/development-tools-tools-and-software/embedded-software-center/mplab-harmony-configurator) from MPLAB X IDE and select **Tools -> Plugins**
+3. Install the [MPLAB® Harmony Configurator 3 Plugin v3.6.4](https://www.microchip.com/en-us/development-tools-tools-and-software/embedded-software-center/mplab-harmony-configurator) from MPLAB X IDE and select **Tools -> Plugins**
 
 4. [Clone/Download](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository) the current repository to get the package.
 
@@ -184,6 +190,8 @@ The following table provides the directory structure of the LoRaWAN stack code b
    * Locate the folder `MLSD_SDK_v2.0.0_Release/MPLAB_X_IDE` from the cloned repository and select the device family pack `Microchip.SAMR34_DFP-2.1.50.atpack` in `MPLAB_X_IDE` directory in this repository.
    * Verify the installation of the device family pack by searching in the window - search for "r34" keyword
    * Restart MPLAB X IDE
+
+> To program WLR089 Xpro board, install/update the Tool Packs: EDBG_TP v1.4.384 from **Tools- > Packs -> Tool Packs** and restart MPLAB X IDE
 
 6. Copy the folder `Harmony_LoRaWAN_MLS_2_0_0` located in the cloned repository to C:\ drive. It is recommended to copy the framework folder to the root directory or root folder.
 
@@ -199,14 +207,14 @@ The following table provides the directory structure of the LoRaWAN stack code b
 
 | Package Name | Version used | Description |
 | ------------ | ------------ | ----------- |
-| [bsp](https://github.com/Microchip-MPLAB-Harmony/bsp) | v3.10.0 | Board Support Package: Includes templates and configuration data for supported development boards. |
-| [core](https://github.com/Microchip-MPLAB-Harmony/core) | v3.10.0 | Includes Drivers and Services with simple to use abstractions of peripherals and shared resources. |
-| [crypto](https://github.com/Microchip-MPLAB-Harmony/crypto) | v3.7.1 | Includes Cryptographic Module Library. |
-| [cryptoauthlib](https://github.com/MicrochipTech/cryptoauthlib) | v3.3.2 | Library for interacting with the Crypto Authentication secure elements. |
-| [csp](https://github.com/Microchip-MPLAB-Harmony/csp) | v3.10.0 | Chip Support Package: Includes the Peripheral Libraries (PLIBs). |
-| [dev_packs](https://github.com/Microchip-MPLAB-Harmony/dev_packs) | v3.10.0 | Describes all peripherals, memory, etc. of supported 32-bit devices. |
-| [mhc](https://github.com/Microchip-MPLAB-Harmony/mhc) | v3.8.1 | Contains the current implementation of the MHC tool. |
-| [wolfssl](https://github.com/Microchip-MPLAB-Harmony/wolfssl) | v4.7.0 | TLS/SSL Library implementation. |
+| [bsp](https://github.com/Microchip-MPLAB-Harmony/bsp) | [v3.10.0](https://github.com/Microchip-MPLAB-Harmony/bsp/tree/v3.10.0) | Board Support Package: Includes templates and configuration data for supported development boards. |
+| [core](https://github.com/Microchip-MPLAB-Harmony/core) | [v3.10.0](https://github.com/Microchip-MPLAB-Harmony/core/tree/v3.10.0) | Includes Drivers and Services with simple to use abstractions of peripherals and shared resources. |
+| [crypto](https://github.com/Microchip-MPLAB-Harmony/crypto) | [v3.7.1](https://github.com/Microchip-MPLAB-Harmony/crypto/tree/v3.7.1) | Includes Cryptographic Module Library. |
+| [cryptoauthlib](https://github.com/MicrochipTech/cryptoauthlib) | [v3.3.2](https://github.com/MicrochipTech/cryptoauthlib/tree/v3.3.2) | Library for interacting with the Crypto Authentication secure elements. |
+| [csp](https://github.com/Microchip-MPLAB-Harmony/csp) | [v3.10.0](https://github.com/Microchip-MPLAB-Harmony/csp/tree/v3.10.0) | Chip Support Package: Includes the Peripheral Libraries (PLIBs). |
+| [dev_packs](https://github.com/Microchip-MPLAB-Harmony/dev_packs) | [v3.10.0](https://github.com/Microchip-MPLAB-Harmony/dev_packs/tree/v3.10.0) | Describes all peripherals, memory, etc. of supported 32-bit devices. |
+| [mhc](https://github.com/Microchip-MPLAB-Harmony/mhc) | [v3.8.1](https://github.com/Microchip-MPLAB-Harmony/mhc/tree/v3.8.1) | Contains the current implementation of the MHC tool. |
+| [wolfssl](https://github.com/Microchip-MPLAB-Harmony/wolfssl) | [v4.7.0](https://github.com/Microchip-MPLAB-Harmony/wolfssl/tree/v4.7.0) | TLS/SSL Library implementation. |
 
 > Ensure that you use the same version of Harmony 3 components used in the original demo codebase while regenerating code.<br>
 You can see the version dependencies of the demo in `harmony-manifest-success.yml` found at `src/config/default` into Harmony Content Manager.<br>
@@ -308,7 +316,7 @@ h. Observe the output on a console window
 ```
 Last reset cause: External Reset
 
-Microchip LoRaWAN Stack - MLS v2.0.0-rc.6
+Microchip LoRaWAN Stack - MLS v2.0.0
 
 Init - Successful
 
@@ -358,3 +366,13 @@ ATSAMR34-XPRO MLS v2.0.0 Oct 25 2021 18:13:45
 
 Checkout the RN command documentation from the <a href="https://github.com/MicrochipTech/atsamr34_lorawan_rn_parser" target="_blank">RN Command Parser</a> repository.
 
+### RN Command Parser + ATECC608B_TNG<a name="step6c"></a>
+
+| Application | Target | Location |
+| ----------- | ------ | -------- |
+| RN Command Parser + ATECC608B_TNGLORA | SAMR34 Xplained Pro | `HarmonyFramework_LoRaWAN_MLS_2_0_0/lorawan_h3_apps/parser_ecc608/sam_r34_xpro/firmware/parser_sam_r34_xpro.X` |
+| RN Command Parser + ATECC608B_TNGLORA | WLR089U0 Xplained Pro | `HarmonyFramework_LoRaWAN_MLS_2_0_0/lorawan_h3_apps/parser_ecc608/sam_r34_xpro/firmware/parser_sam_r34_xpro.X` |
+
+The RN Command Parser application is provided as demo application to control the devices with ASCII commands over UART interfance with support for crypto companion such as the pre-provisioned ATECC608B_TNG secure element.
+
+Checkout the RN command documentation from the <a href="https://github.com/MicrochipTech/atsamr34_lorawan_rn_parser" target="_blank">RN Command Parser</a> repository.

@@ -153,5 +153,5 @@ SalStatus_t SAL_Read(salItems_t key_type, uint8_t* key);
 
 SalStatus_t SAL_CRYPTO_Init(void);
 SalStatus_t SAL_CRYPTO_Deinit(void);
-bool SAL_CRYPTO_isInitialized(void);
+
 #endif  // _SAL_H

@@ -289,10 +289,7 @@ void Lorawan_Pds_fid2_CB(void)
 
     if (loRa.cryptoDeviceEnabled == true)
     {   //m16946
-		if (SAL_CRYPTO_isInitialized() == false)
-		{
-			SAL_CRYPTO_Init() ;
-		}
+        SAL_CRYPTO_Init() ;
 		//-----
         sal_status = SAL_Read(SAL_JOIN_EUI, (uint8_t *)&loRa.activationParameters.joinEui.buffer);
         if (SAL_SUCCESS != sal_status)

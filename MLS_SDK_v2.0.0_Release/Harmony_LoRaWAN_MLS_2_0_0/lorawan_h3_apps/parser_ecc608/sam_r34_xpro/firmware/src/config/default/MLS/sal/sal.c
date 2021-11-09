@@ -86,7 +86,6 @@ static SalStatus_t sal_WriteKeyEncryptionKey(void);
 static void sal_GenerateSubkey (uint8_t* key, salItems_t key_type, uint8_t* k1, uint8_t* k2);
 static void sal_FillSubKey( uint8_t *source, uint8_t *key, uint8_t size);
 /*************************************IMPLEMENTATION****************************/
-static bool salCryptoInitStatus = false ;	// Crypto not yet initialized
  /**
  * \brief This function initializes the security modules like AES, ECC608 (If used)
  *
@@ -98,12 +97,14 @@ static bool salCryptoInitStatus = false ;	// Crypto not yet initialized
 SalStatus_t SAL_CRYPTO_Init(void)
 {
     SalStatus_t stat = SAL_FAILURE;
-	salCryptoInitStatus = false ;    
-    if (ATCA_SUCCESS == atcab_init(&atecc608_0_init_data))
-    {
-        delay_ms(200);
-        stat = SAL_SUCCESS;
-        salCryptoInitStatus = true ;	// Crypto initialized
+    // check if crypto already initialized
+    if (NULL == atcab_get_device())
+    {   // Crypto not yet initialized
+        if (ATCA_SUCCESS == atcab_init(&atecc608_0_init_data))
+        {
+            delay_ms(200);
+            stat = SAL_SUCCESS;
+        }
     }
     return stat;
 }
@@ -111,17 +112,15 @@ SalStatus_t SAL_CRYPTO_Init(void)
 SalStatus_t SAL_CRYPTO_Deinit(void)
 {
     SalStatus_t stat = SAL_FAILURE;
-    if (ATCA_SUCCESS == atcab_release())
+    // check if crypto already initialized
+    if (NULL != atcab_get_device())
     {
-        stat = SAL_SUCCESS;
-        salCryptoInitStatus = false ;
+        if (ATCA_SUCCESS == atcab_release())
+        {
+            stat = SAL_SUCCESS;
+        }
     }
     return stat;
-}
-
-bool SAL_CRYPTO_isInitialized(void)
-{
-	return salCryptoInitStatus ;
 }
 
 SalStatus_t SAL_Init(void)
